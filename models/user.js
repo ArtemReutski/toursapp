@@ -35,3 +35,13 @@ module.exports.getUserByUsername = function (username, callback) {
     const query = { username: username };
     user.findOne(query, callback);
 };
+
+module.exports.addUser = function (newuser, callback) {
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, salt, (err, hash) => {
+            if(err) throw err;
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
+}
